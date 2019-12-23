@@ -10,7 +10,7 @@ function _dependenciesCmdForPlatformVersion(platform, version) {
       '18.04': 'autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev'
     }[version]
 
-    return `sudo apt-get -qq install ${dependencies}`
+    return `apt-get -qq install ${dependencies}`
   }
 }
 
@@ -29,7 +29,7 @@ async function _installRubyBuild() {
 
   const rubyBuildDir = `${process.env.HOME}/var/ruby-build`
   await exec.exec(`git clone https://github.com/rbenv/ruby-build.git ${rubyBuildDir}`)
-  await exec.exec(`sudo ${rubyBuildDir}/install.sh`, { env: { 'PREFIX': '/usr/local' } })
+  await exec.exec(`${rubyBuildDir}/install.sh`, { env: { 'PREFIX': '/usr/local' } })
 
   core.endGroup()
 }
